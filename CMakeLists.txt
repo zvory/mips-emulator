@@ -162,12 +162,10 @@ configure_file (
 set(src_files
 #	src/foo.c
   src/main.c
-  src/d_string.c
 )
 
 # Primary header files, also for doxygen documentation
 set(header_files
-  src/d_string.h
 )
 
 # Public headers, will be installed in 'include'
