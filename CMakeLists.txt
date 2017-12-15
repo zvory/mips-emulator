@@ -5,17 +5,17 @@ cmake_minimum_required (VERSION 2.6)
 # Define Our Project
 # ==================
 
-set (My_Project_Title "C-Template")
-set (My_Project_Description "Boilerplate c project with cmake support, CuTest unit testing, and more.")
-set (My_Project_Author "Fletcher T. Penney")
-set (My_Project_Revised_Date "2017-01-16")
-set (My_Project_Version_Major 1)
+set (My_Project_Title "MIPS-Emulator")
+set (My_Project_Description "MIPS emulator for the CS241 subset of MIPS")
+set (My_Project_Author "Alexander Zvorygin")
+set (My_Project_Revised_Date "2017-12-14")
+set (My_Project_Version_Major 0)
 set (My_Project_Version_Minor 0)
-set (My_Project_Version_Patch 5)
+set (My_Project_Version_Patch 1)
 
 set (My_Project_Version "${My_Project_Version_Major}.${My_Project_Version_Minor}.${My_Project_Version_Patch}")
 
-set (My_Project_Copyright_Date "2015-2017")
+set (My_Project_Copyright_Date "2017")
 set (My_Project_Copyright "Copyright © ${My_Project_Copyright_Date} ${My_Project_Author}.")
 
 string(TOUPPER ${My_Project_Title} My_Project_Title_Caps  )
@@ -161,10 +161,13 @@ configure_file (
 # src_files are the primary files, and will be included in doxygen documentation
 set(src_files
 #	src/foo.c
+  src/main.c
+  src/d_string.c
 )
 
 # Primary header files, also for doxygen documentation
 set(header_files
+  src/d_string.h
 )
 
 # Public headers, will be installed in 'include'

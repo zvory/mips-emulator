@@ -2,11 +2,11 @@
 
 |            |                           |  
 | ---------- | ------------------------- |  
-| Title:     | C-Template        |  
-| Author:    | Fletcher T. Penney       |  
-| Date:      | 2017-01-16 |  
-| Copyright: | Copyright © 2015-2017 Fletcher T. Penney.    |  
-| Version:   | 1.0.5      |  
+| Title:     | MIPS-Emulator        |  
+| Author:    | Alexander Zvorygin       |  
+| Date:      | 2017-12-14 |  
+| Copyright: | Copyright © 2017 Alexander Zvorygin.    |  
+| Version:   | 0.0.1      |  
 
 
 ## Introduction ##
