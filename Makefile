@@ -1,15 +1,52 @@
-CXX = clang
-CXXFLAGS = -std=c11 -Wall -Wextra -Wpedantic  -Wno-pragma-once-outside-header
-EXEC = mips-emulator
-OBJECTS = main.o reading.o util.o test.o
-DEPENDS = ${OBJECTS:.o=.d}
+# ------------------------------------------------
+# Generic Makefile
+#
+# Author: yanick.rochon@gmail.com
+# Date  : 2011-08-10
+#
+# Changelog :
+#   2010-11-05 - first version
+#   2011-08-10 - added structure : sources, objects, binaries
+#                thanks to http://stackoverflow.com/users/128940/beta
+#   2017-04-24 - changed order of linker params
+# ------------------------------------------------
 
-${EXEC}: ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+# project name (generate executable with this name)
+TARGET   = mips-emulator
 
--include ${DEPENDS}
+CC       = clang
+# compiling flags here
+CFLAGS   = -std=c11 -Wall -Wextra -Wpedantic  -Wno-pragma-once-outside-header -I.
+
+LINKER   = clang
+# linking flags here
+LFLAGS   = -Wall -I. -lm -v
+
+# change these to proper directories where each file should be
+SRCDIR   = src
+OBJDIR   = obj
+BINDIR   = bin
+
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(SRCDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+rm       = rm -f
+
+
+$(BINDIR)/$(TARGET): $(OBJECTS)
+	@$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
+	@echo "Linking complete!"
+
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean
-
 clean:
-	rm ${OBJECTS} ${EXEC} ${DEPENDS}
+	@$(rm) $(OBJECTS)
+	@echo "Cleanup complete!"
+
+.PHONY: remove
+remove: clean
+	@$(rm) $(BINDIR)/$(TARGET)
+	@echo "Executable removed!"
